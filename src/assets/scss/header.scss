@@ -1,0 +1,170 @@
+//Header
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    @include f_left;
+    width: 100%;
+    &.fixed, &.fixed-inner{
+      background: $color-292929;
+      .logo{
+        border-color:$color-292929;
+        margin-bottom: -15px;
+      }
+      .navbar .nav li{
+        margin-top: 5px;
+      }      
+    }
+    @include media-breakpoint-up(sm){
+        position: fixed;
+    }
+    &.fixed-inner{
+      position: static;      
+    }
+    .logo{
+        @include f_left;
+        padding:15px;
+        background: $white-color;
+        transform: rotate(5deg);
+        border:1px solid transparent;
+    }
+    .navbar{
+        font-size: 17px;
+        text-align: center;
+        @include media-breakpoint-up(sm){
+            font-size: 21px;
+            float: right;
+            margin-top: 6px;
+        }
+        .nav{
+            float:none;
+            li{
+                @include media-breakpoint-up(md){
+                  margin-top: 10px;
+                &:not(:last-child){
+                    margin-right: 20px;
+                }
+                a{
+                    padding: 0 0 5px;
+                    display: inline-block;
+                    position: relative;
+                    &:after{
+                      content: '';
+                      position: absolute;
+                      bottom:0;
+                      left:0;
+                      width:0%;
+                      border-bottom:1px solid $orange-color;
+                    }
+                    &:hover:after{
+                      width:100%;
+                    }
+                }
+                }
+            }
+        }
+        .navbar-toggler{
+            position: absolute;
+            right: 0;
+            margin-top: 15px;
+            width: 35px;
+            padding: 0;
+            span{
+	width:100%;
+	height:2px;
+  float: left;
+  background: $white-color;
+  @include transition(0.3s all);
+	border-radius: 5px;
+
+  &:not(:last-child){
+	margin-bottom:4px;
+  }
+  &:nth-child(1) {
+    @include rotate(45deg);
+    margin-top: 8px;
+  }
+  &:nth-child(2) {
+    right:-100px;
+    position:relative;
+    opacity:0;
+  }
+  &:nth-child(3) {
+    @include rotate(-45deg);
+    margin-top: -12px;
+  }
+  }
+  &.collapsed span{
+    @include rotate(0deg);
+    display:block;
+    margin-top: 0px;
+    right:0;
+    opacity:1;
+  } 
+        }
+    }
+}
+
+@include media-breakpoint-down(sm){
+    header .navbar-collapse{
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      display: table;
+      background: $orange-color2;
+      top: 0;
+      right: 0;
+      @include transition(0.5s all);
+      transform: translate(100%, 0px);
+      &.show{
+        transform: translate(0, 0px);
+      }
+      .navbar-nav{
+        display: table-cell;
+        vertical-align: middle;
+      }
+      li{
+        a{
+          padding:10px 15px !important;
+          &:before{
+            content: '';
+            position: absolute;
+            left: 15px;
+            right: 15px;
+            bottom: 0;
+          }
+          &:hover{
+            &:before{
+              border-bottom-color:transparent !important;
+            }
+          }
+        }        
+        &:not(:last-child){
+          a{
+            &:before{
+            }
+          }
+        }
+        &.active{
+          a{
+            background: $red-color;
+            color: $white-color;
+            &:before{
+              border-bottom-color:transparent !important;
+            }
+          }
+        }
+      }
+    }
+      .navbar-toggler{
+        transform: translate(0px, 0);
+        z-index: 10;          
+      }
+    }
+    
+
+header.header-2{
+  position: relative;
+}
